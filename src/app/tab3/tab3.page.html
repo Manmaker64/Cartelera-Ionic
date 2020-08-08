@@ -1,0 +1,12 @@
+<app-cabeceras tituloPrincipal="Favoritos"></app-cabeceras>
+
+<ion-content>
+  <div *ngFor="let pelicula of favoritoGenero">
+    <app-cabeceras *ngIf="pelicula.pelis.length > 0"
+                   [titulo]="pelicula.genero">
+    </app-cabeceras>
+    <app-slideshow-poster (load)="cargarDatos( $event )"
+                          [peliculas]="pelicula.pelis">
+    </app-slideshow-poster>
+  </div>
+</ion-content>

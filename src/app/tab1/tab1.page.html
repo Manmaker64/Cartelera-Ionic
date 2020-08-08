@@ -1,0 +1,14 @@
+<ion-content>
+  <app-cabeceras tituloPrincipal="Películas"></app-cabeceras>
+  <app-cabeceras titulo="Novedades"></app-cabeceras>
+  <app-slideshow-backdrop [peliculas]="peliculasRecientes"></app-slideshow-backdrop>
+  
+  <app-cabeceras titulo="Cartelera"></app-cabeceras>
+  <app-slideshow-poster [peliculas]="peliculasRecientes"></app-slideshow-poster>
+  
+  <app-cabeceras titulo="Populares"></app-cabeceras>
+  <app-slideshow-pares existePelicula="existePelicula"
+                       [peliculas]="peliculasPopulares"
+                       (cargarMas)="cargarMas()">
+  </app-slideshow-pares>
+</ion-content>

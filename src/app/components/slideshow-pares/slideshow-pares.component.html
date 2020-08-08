@@ -1,0 +1,18 @@
+<ion-slides [options]="slideOptions">
+  <ion-slide *ngFor="let pares of peliculas | pares">
+    <ion-card mode="md" class="cardPopulares">
+      <ion-col class="anchoCompleto" *ngFor="let pelicula of pares | filtroImagen">
+        <div class="margenInferior"></div>
+        <img class="poster" [src]="pelicula.poster_path | imagen" (click)="verDetalle( pelicula.id )">
+      </ion-col>
+    </ion-card>
+  </ion-slide>
+  <ion-slide *ngIf="existePelicula" class="slide-mas">
+    <ion-button expand="full"
+                class="btn-mas"
+                size="large"
+                (click)="onClick()">
+      <ion-icon name="add"></ion-icon>          
+    </ion-button>
+  </ion-slide>
+</ion-slides>

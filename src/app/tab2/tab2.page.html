@@ -1,0 +1,45 @@
+<ion-content>
+  <app-cabeceras tituloPrincipal="Buscar"></app-cabeceras>
+
+  <ion-toolbar class="ion-margin-top">
+    <ion-searchbar placeholder="Buscar película"
+                  animated="true"
+                  debounce="1000"
+                  [value]="textoBuscar"
+                  (ionChange)="buscar( $event )">
+    </ion-searchbar>
+  </ion-toolbar>
+
+  <ion-grid *ngIf="buscando">
+    <ion-row class="ion-text-center">
+      <ion-col>
+        <ion-spinner name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="peliculas.length === 0">
+    <ion-list-header mode="ios">
+      <ion-label><h1 class="detalleSugerencias">Sugerencias</h1></ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let sugerencia of sugerencias"
+              (click)="textoBuscar = sugerencia">
+      <ion-label color="primary">{{ sugerencia }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid fixed="true">
+    <ion-row>
+      <ion-col size="6" *ngFor="let pelicula of peliculas">
+        <ion-card (click)="detalle( pelicula.id )">
+          <ion-card-subtitle class="ion-text-end">{{ pelicula.release_date }}</ion-card-subtitle>
+          <img *ngIf="pelicula.poster_path" [src]="pelicula.poster_path | imagen">
+          <img *ngIf="!pelicula.poster_path" src="/assets/no-disponible.jpg">
+          <ion-card-content class="ion-text-center">
+            <h2><strong>{{ pelicula.title }}</strong></h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
